@@ -8,10 +8,14 @@ namespace Dal
 {
     public class Class1
     {
+        /// <summary>
+        /// /抖音记录美好生活
+        /// </summary>
+        /// <returns></returns>
         public string YangDong()
         {
             //这里是王玺凯添加的
-            return "yd";
+            return "抖音记录美好生活";
         }
     }
 }
