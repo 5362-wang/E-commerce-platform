@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Model;
 namespace ApiSDKClient
 {
     /// <summary>
@@ -13,6 +13,7 @@ namespace ApiSDKClient
     {
         public string UserName { get; set; }
         public string Pwd  { get; set; }
+        public string Phone { get; set; }
         public override string GetApiName()
         {
             return "/api/User/AddUser";

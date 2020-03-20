@@ -11,7 +11,7 @@ namespace Dal.User
 {
     public class UserDal
     {
-        public string ConnStr = "Data Source=.;Initial Catalog=Commerce;Integrated Security=True";
+        public string ConnStr = "Data Source=.;Initial Catalog=EWTP;Integrated Security=True";
         /// <summary>
         /// 用户注册
         /// </summary>
@@ -22,46 +22,26 @@ namespace Dal.User
             int res = 0;
             using (IDbConnection connection= new  SqlConnection (ConnStr))
             {
-                string sql = $@"INSERT INTO [dbo].[UserInfo]
+                var sql = $@"INSERT INTO [dbo].[UserInfo]
            ([UserName]
-           ,[UserPass]
-           ,[Salt]
-           ,[NickName]
-           ,[UserImg]
-           ,[PhoneNumder]
-           ,[RealName]
-           ,[Province]
-           ,[City]
-           ,[Area]
-           ,[AddDetail]
+           ,[PassWord]
+           ,[Phone]
            ,[Email]
-           ,[UserMoney]
-           ,[UserType]
-           ,[Status]
-           ,[CreateTime]
-           ,[UpdateTime]
-           ,[CreaterId]
-           ,[UpdaterId])
-     VALUES
-           ('{userInfo.UserName}'
-           ,'{userInfo.UserPass}'
-           ,'{userInfo.Salt}'
-           ,'{userInfo.NickName}'
-           ,'0'
-           ,'{userInfo.PhoneNumder}'
-           ,'请填写真实姓名'
-           ,0
-           ,0
-           ,0
-           ,'请填写详细地址'
-           ,'请绑定邮箱'
-           ,0
-           ,1
-           ,1
-           ,{DateTime.Now}
-           ,{DateTime.Now}
-           ,1
-           ,1)";
+           ,[Salt]
+           ,[RealName]
+           ,[DepartmentId]
+           ,[UserImg]
+           ,[UserType])
+            VALUES
+           ('{userInfo.UserName}',
+           '{userInfo.PassWord}',
+           '{userInfo.Phone}',
+           '请绑定邮箱',
+           '{userInfo.Salt}',
+           '请输入真实姓名',
+          1,
+          '222',
+           1)";
                 res = connection.Execute(sql);
             }
 
@@ -72,11 +52,11 @@ namespace Dal.User
         /// </summary>
         /// <param name="phone"></param>
         /// <returns></returns>
-        public  bool IsExistPhone (string phone)
+        public  bool IsExistPhone (string username)
         {
             using (IDbConnection connection = new SqlConnection(ConnStr))
             {
-                string sql = $"Select count(1) From UserInfo Where PhoneNumder='{phone}' and Salt =1";
+                string sql = $"Select count(1) From UserInfo Where UserName='{username}' and Salt =1";
                 return connection.ExecuteScalar<int>(sql) > 0;
             }
            

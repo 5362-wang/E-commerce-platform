@@ -41,17 +41,18 @@ namespace Bll
             //2.加密
             var password = MD5Encrypt.MD5Encrypt32(request.Pwd + salt);
             UserInfo userInfo = new UserInfo()
-            {
-                UserName = request.UserName,
-                PhoneNumder = request.UserName,
-                NickName = Extension.ToNickName(request.UserName),
-                UserPass = password,
+            {             
+               
+               UserName= request.UserName,
+               Phone=request.Phone,
+                PassWord = password,
                 Salt = salt
             };
           var res= dal.UserRegist(userInfo);
             if (res>0)
             {
                 response.RegistSuccess = true;
+                response.Message = "注册成功";
             }
             else
             {

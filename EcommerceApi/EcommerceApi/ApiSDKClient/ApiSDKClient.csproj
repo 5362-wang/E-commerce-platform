@@ -58,5 +58,11 @@
     <Folder Include="BApi\Request\" />
     <Folder Include="BApi\Response\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{9f53dd42-aaf4-445d-bf1d-daf52e2b6b57}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

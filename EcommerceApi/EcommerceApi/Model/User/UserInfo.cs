@@ -22,7 +22,7 @@ namespace Model
         /// <summary>
         /// 用户密码
         /// </summary>
-        public string UserPass	 { get; set; }
+        public string PassWord { get; set; }
         /// <summary>
         /// 用户手机号
         /// </summary>
