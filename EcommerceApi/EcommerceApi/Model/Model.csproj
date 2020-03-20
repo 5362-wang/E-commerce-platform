@@ -45,7 +45,9 @@
     <Compile Include="Comt\CommodityInfo.cs" />
     <Compile Include="Comt\CommodityType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\DiscountsInfo.cs" />
     <Compile Include="User\UserInfo.cs" />
+    <Compile Include="User\UserTypeInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Order\" />
