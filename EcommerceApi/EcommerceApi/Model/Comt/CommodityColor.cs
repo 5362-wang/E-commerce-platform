@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Comt
+namespace Model
 {
     /// <summary>
     /// 商品颜色表
