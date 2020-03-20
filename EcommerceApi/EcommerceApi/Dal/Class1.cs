@@ -8,5 +8,9 @@ namespace Dal
 {
     public class Class1
     {
+        public string YangDong()
+        {
+            return "yd";
+        }
     }
 }
