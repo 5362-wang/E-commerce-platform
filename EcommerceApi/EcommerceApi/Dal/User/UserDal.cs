@@ -56,7 +56,7 @@ namespace Dal.User
         {
             using (IDbConnection connection = new SqlConnection(ConnStr))
             {
-                string sql = $"Select count(1) From UserInfo Where UserName='{username}' and Salt =1";
+                string sql = $"Select count(1) From UserInfo Where UserName='{username}'";
                 return connection.ExecuteScalar<int>(sql) > 0;
             }
            

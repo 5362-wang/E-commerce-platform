@@ -9,7 +9,7 @@ namespace Model
     /// <summary>
     /// 部门表
     /// </summary>
-    class DiscountsInfo
+  public   class Department
     {
         /// <summary>
         /// 部门Id
