@@ -46,9 +46,11 @@
     <Compile Include="FApi\Request\User\UserAddRequest.cs" />
     <Compile Include="FApi\Request\User\UserDeleteRequest.cs" />
     <Compile Include="FApi\Request\User\UserGetRequest.cs" />
+    <Compile Include="FApi\Request\User\UserLoginRequest.cs" />
     <Compile Include="FApi\Response\User\UserAddResponse.cs" />
     <Compile Include="FApi\Response\User\UserDeleteResponse.cs" />
     <Compile Include="FApi\Response\User\UserGetResponse.cs" />
+    <Compile Include="FApi\Response\User\UserLoginResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

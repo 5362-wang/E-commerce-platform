@@ -39,7 +39,7 @@ namespace Bll
             //1.先生成一个盐
             var salt = Generate.GenerateSalt();
             //2.加密
-            var password = MD5Encrypt.MD5Encrypt32(request.Pwd + salt);
+            var password = MD5Encrypt.MD5Encrypt32(request.Pwd);
             UserInfo userInfo = new UserInfo()
             {             
                
@@ -60,6 +60,39 @@ namespace Bll
                 response.Message = "注册失败";
             }
             return response;
+        }
+        public UserLoginResponse UserLogin(UserLoginRequest request)
+        {
+            UserLoginResponse userLoginResponse = new UserLoginResponse();
+            if (string.IsNullOrEmpty(request.UserName))
+            {
+                userLoginResponse.Status = false;
+                userLoginResponse.Message = "用户名不能为空";
+                return userLoginResponse;
+            }
+            if (string.IsNullOrEmpty(request.PassWord))
+            {
+                userLoginResponse.Status = false;
+                userLoginResponse.Message = "密码不能为空";
+                return userLoginResponse;
+            }
+            var password = MD5Encrypt.MD5Encrypt32(request.PassWord);
+            UserInfo userInfo = new UserInfo()
+            { UserName = request.UserName,
+                PassWord = password
+            };
+            var res = dal.UserLogin(userInfo.UserName,userInfo.PassWord);
+            if (res > 0)
+            {
+                userLoginResponse.LoginSuccess = true;
+                userLoginResponse.Message = "登录成功";
+            }
+            else
+            {
+                userLoginResponse.LoginSuccess = false;
+                userLoginResponse.Message = "登录失败";
+            }
+            return userLoginResponse;
         }
     }
 }

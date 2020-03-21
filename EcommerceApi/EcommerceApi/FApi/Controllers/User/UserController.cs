@@ -24,8 +24,17 @@ namespace FApi.Controllers.User
         {
             return UserBll.Instance.UserRegist(request);
         }
+        /// <summary>
+        /// 用户登录的接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public UserLoginResponse UserLogin(UserLoginRequest request)
+        {
+            return UserBll.Instance.UserLogin(request);
+        }
 
-       
         /// <summary>
         /// 根据用户id 获取一条用户信息
         /// </summary>

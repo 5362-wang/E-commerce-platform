@@ -48,7 +48,7 @@ namespace Dal.User
             return res;
         }
         /// <summary>
-        /// 判断手机号是否重复
+        /// 判断用户是否重复
         /// </summary>
         /// <param name="phone"></param>
         /// <returns></returns>
@@ -60,6 +60,17 @@ namespace Dal.User
                 return connection.ExecuteScalar<int>(sql) > 0;
             }
            
+        }
+
+        public int  UserLogin(string username,string pwd)
+        {
+            int res = 0;
+            using (IDbConnection connection = new SqlConnection(ConnStr))
+            {
+                var sql = $"select Uid from UserInfo where	UserName='{username}'and PassWord='{pwd}'";
+                res = connection.ExecuteScalar<int>(sql);
+            }
+            return res;
         }
     }
 }
