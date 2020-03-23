@@ -34,7 +34,16 @@ namespace FApi.Controllers.User
         {
             return UserBll.Instance.UserLogin(request);
         }
-
+        /// <summary>
+        /// 修改密码的接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public UserFindResponse FindPwd(UserFindRequest request)
+        {
+            return UserBll.Instance.FindPwd(request);
+        }
         /// <summary>
         /// 根据用户id 获取一条用户信息
         /// </summary>
