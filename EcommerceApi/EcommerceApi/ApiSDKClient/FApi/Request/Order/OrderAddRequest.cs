@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace ApiSDKClient
 {
-    /// <summary>
-    /// 订单表
-    /// </summary>
-    public class OrderInfo
+    public class OrderAddRequest:BaseRequest
     {
-
         /// <summary>
         /// 订单编号
         /// </summary>
@@ -80,17 +76,9 @@ namespace Model
         /// 修改时间
         /// </summary>
         public DateTime UpdateTime { get; set; }
-        /// <summary>
-        /// 类型名称
-        /// </summary>
-        public string TypeName { get; set; }
-        /// <summary>
-        /// 优惠名称
-        /// </summary>
-        public string DiscountsWay { get; set; }
-        /// <summary>
-        /// 订单状态类型
-        /// </summary>
-        public string OrderTypeName { get; set; }
+        public override string GetApiName()
+        {
+            return "/api/Order/AddOrderInfo";
+        }
     }
 }
