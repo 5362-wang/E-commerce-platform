@@ -44,7 +44,9 @@
     <Compile Include="BaseBll.cs" />
     <Compile Include="Comt\CommodityBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\DepartmentBll.cs" />
     <Compile Include="User\UserBll.cs" />
+    <Compile Include="User\UserTypeInfoBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApiSDKClient\ApiSDKClient.csproj">
