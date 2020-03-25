@@ -72,5 +72,15 @@ namespace Dal.User
             }
             return res;
         }
+        public int FindPwd(string userName,string pwd)
+        {
+            int res = 0;
+            using (IDbConnection connection = new SqlConnection(ConnStr))
+            {
+                var sql = $"update [dbo].[UserInfo]  set PassWord='{pwd}' where UserName='{userName}'";
+                res = connection.Execute(sql);
+            }
+            return res;
+        }
     }
 }
