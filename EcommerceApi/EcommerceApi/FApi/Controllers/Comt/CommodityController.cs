@@ -121,9 +121,9 @@ namespace FApi.Controllers.Comt
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public CommTypeShowResponse CommTypeShow(CommTypeShowRequest request)
+        public CommTypeShowResponse CommTypeShow()
         {
-            return CommodityBll.Instance.TypeShow(request);
+            return CommodityBll.Instance.TypeShow();
         }
 
 

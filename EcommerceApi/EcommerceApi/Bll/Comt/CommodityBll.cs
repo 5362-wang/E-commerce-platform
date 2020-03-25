@@ -106,7 +106,7 @@ namespace Bll.Comt
         /// 显示类别
         /// </summary>
         /// <returns></returns>
-        public CommTypeShowResponse TypeShow(CommTypeShowRequest request)
+        public CommTypeShowResponse TypeShow()
         {
             CommTypeShowResponse response = new CommTypeShowResponse();
             return response;
