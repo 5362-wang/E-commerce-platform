@@ -4,17 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace ApiSDKClient.FApi.Request.Comt
 {
     /// <summary>
-    /// 商品表
+    /// 添加商品
     /// </summary>
-   public class CommodityInfo
+   public class CommodityAddRequest:BaseRequest
     {
-        /// <summary>
-        /// 商品Id
-        /// </summary>
-        public int CommodityId { get; set; }
         /// <summary>
         /// 商品名称
         /// </summary>
@@ -47,5 +43,10 @@ namespace Model
         /// 商品库存
         /// </summary>
         public int CountNumber { get; set; }
+
+        public override string GetApiName()
+        {
+            return "/api/Comt/CommodityAdd";
+        }
     }
 }
