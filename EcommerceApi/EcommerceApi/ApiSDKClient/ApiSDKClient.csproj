@@ -43,6 +43,16 @@
   <ItemGroup>
     <Compile Include="BaseRequest.cs" />
     <Compile Include="BaseResponse.cs" />
+    <Compile Include="FApi\Request\Comt\CommColorAddRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommColorShowRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommColorUptRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommodityAddRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommodityDelRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommodityInquireRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommodityShowRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommodityUptRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommTypeAddRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommTypeShowRequest.cs" />
     <Compile Include="FApi\Request\Order\OrderAddRequest.cs" />
     <Compile Include="FApi\Request\Order\OrderDeleteRequest.cs" />
     <Compile Include="FApi\Request\Order\OrderGetOneOrderInfoRequest.cs" />
@@ -53,18 +63,12 @@
     <Compile Include="FApi\Request\Order\OrderUpdateRequest.cs" />
     <Compile Include="FApi\Request\User\UserAddRequest.cs" />
     <Compile Include="FApi\Request\User\UserDeleteRequest.cs" />
+    <Compile Include="FApi\Request\User\UserFindRequest.cs" />
     <Compile Include="FApi\Request\User\UserGetRequest.cs" />
     <Compile Include="FApi\Request\User\UserLoginRequest.cs" />
-    <Compile Include="FApi\Response\Order\OrderAddResponse.cs" />
-    <Compile Include="FApi\Response\Order\OrderDeleteResponse.cs" />
-    <Compile Include="FApi\Response\Order\OrderGetOneOrderInfoResponse.cs" />
-    <Compile Include="FApi\Response\Order\OrderGetResponse.cs" />
-    <Compile Include="FApi\Response\Order\OrderQueryCommodityTypeResponse.cs" />
-    <Compile Include="FApi\Response\Order\OrderQueryDiscountsInfoResponse.cs" />
-    <Compile Include="FApi\Response\Order\OrderQueryOrderTypeResponse.cs" />
-    <Compile Include="FApi\Response\Order\OrderUpdateResponse.cs" />
     <Compile Include="FApi\Response\User\UserAddResponse.cs" />
     <Compile Include="FApi\Response\User\UserDeleteResponse.cs" />
+    <Compile Include="FApi\Response\User\UserFindResponse.cs" />
     <Compile Include="FApi\Response\User\UserGetResponse.cs" />
     <Compile Include="FApi\Response\User\UserLoginResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

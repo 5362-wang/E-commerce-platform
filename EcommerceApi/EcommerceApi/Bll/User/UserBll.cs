@@ -94,5 +94,33 @@ namespace Bll
             }
             return userLoginResponse;
         }
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public UserFindResponse FindPwd(UserFindRequest request)
+        {
+            UserFindResponse userFindResponse = new UserFindResponse();
+            if (string.IsNullOrEmpty(request.Pwd))
+            {
+                userFindResponse.Status = false;
+                userFindResponse.Message = "密码不能为空";
+                return userFindResponse;
+            }
+            var password = MD5Encrypt.MD5Encrypt32(request.Pwd);
+            var res = dal.FindPwd(request.UserName, password);
+            if (res > 0)
+            {
+                userFindResponse.FindSuccess = true;
+                userFindResponse.Message = "密码修改成功";
+            }
+            else
+            {
+                userFindResponse.FindSuccess = false;
+                userFindResponse.Message = "密码修改失败";
+            }
+            return userFindResponse;
+        }
     }
 }
