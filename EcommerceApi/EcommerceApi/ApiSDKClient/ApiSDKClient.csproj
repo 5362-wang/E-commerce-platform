@@ -103,10 +103,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApiSDKClient功能说明.txt" />
+    <Content Include="bin\Debug\ApiSDKClient.dll" />
+    <Content Include="bin\Debug\ApiSDKClient.pdb" />
+    <Content Include="obj\Debug\ApiSDKClient.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\ApiSDKClient.dll" />
+    <Content Include="obj\Debug\ApiSDKClient.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BApi\Request\" />
     <Folder Include="BApi\Response\" />
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
@@ -115,6 +122,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="obj\Debug\ApiSDKClient.csproj.CopyComplete" />
+    <None Include="obj\Debug\ApiSDKClient.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\ApiSDKClient.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Release\ApiSDKClient.csprojAssemblyReference.cache" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
