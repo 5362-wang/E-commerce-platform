@@ -52,7 +52,7 @@ namespace FApi.Controllers.User
         [HttpPost]
         public UserGetResponse GetUserInfo(UserGetRequest request)
         {
-            return new UserGetResponse();
+            return UserBll.Instance.GetUser(request);
         }
 
         /// <summary>

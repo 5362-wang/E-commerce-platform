@@ -81,9 +81,13 @@ namespace Bll
             { UserName = request.UserName,
                 PassWord = password
             };
-            var res = dal.UserLogin(userInfo.UserName,userInfo.PassWord);
-            if (res > 0)
-            {
+            userInfo = dal.UserLogin(userInfo.UserName,userInfo.PassWord);
+            if (userInfo.Uid > 0)
+            {              
+                userLoginResponse.Uid = userInfo.Uid;
+                userLoginResponse.UserImg = userInfo.UserImg;
+                userLoginResponse.UserName = userInfo.UserName;
+                userLoginResponse.DepartmentId = userInfo.DepartmentId;
                 userLoginResponse.LoginSuccess = true;
                 userLoginResponse.Message = "登录成功";
             }
@@ -121,6 +125,20 @@ namespace Bll
                 userFindResponse.Message = "密码修改失败";
             }
             return userFindResponse;
+        }
+        public UserGetResponse GetUser(UserGetRequest request)
+        {
+            UserGetResponse userGetResponse = new UserGetResponse();
+            userGetResponse.UserInfoList = dal.GetUsers();
+            if (userGetResponse.UserInfoList.Count()>0)
+            {         
+                userGetResponse.Message = "获取到用户信息";
+            }
+            else
+            {
+                userGetResponse.Message = "暂无用户信息";
+            }
+            return userGetResponse;
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Dal.User
            '请绑定邮箱',
            '{userInfo.Salt}',
            '请输入真实姓名',
-          1,
+          0,
           '222',
            1)";
                 res = connection.Execute(sql);
@@ -62,15 +62,15 @@ namespace Dal.User
            
         }
 
-        public int  UserLogin(string username,string pwd)
+        public UserInfo  UserLogin(string username,string pwd)
         {
-            int res = 0;
+            UserInfo info = new UserInfo();
             using (IDbConnection connection = new SqlConnection(ConnStr))
             {
-                var sql = $"select Uid from UserInfo where	UserName='{username}'and PassWord='{pwd}'";
-                res = connection.ExecuteScalar<int>(sql);
+                var sql = $"select * from UserInfo where	UserName='{username}'and PassWord='{pwd}'";
+                info = connection.Query<UserInfo>(sql).FirstOrDefault();
             }
-            return res;
+            return info;
         }
         public int FindPwd(string userName,string pwd)
         {
@@ -82,5 +82,16 @@ namespace Dal.User
             }
             return res;
         }
+        public List<UserInfo> GetUsers()
+        {
+            List<UserInfo> list = new List<UserInfo>();
+            using (IDbConnection connection = new SqlConnection(ConnStr))
+            {
+                var sql = "select * from UserInfo";
+                list = connection.Query<UserInfo>(sql).ToList();
+            }
+            return list;
+        }
+
     }
 }
