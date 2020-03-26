@@ -28,27 +28,27 @@ namespace FApi.Controllers.Order
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public OrderQueryDiscountsInfoResponse QueryDiscountsInfo()
+        public OrderQueryDiscountsInfoResponse QueryDiscountsInfo(OrderQueryDiscountsInfoRequest request)
         {
-            return OrderBll.Instance.QueryDiscountsInfo();
+            return OrderBll.Instance.QueryDiscountsInfo(request);
         }
         /// <summary>
         /// 查询商品规格表[S  M  L  XL]
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public OrderQueryCommodityTypeResponse QueryCommodityType()
+        public OrderQueryCommodityTypeResponse QueryCommodityType(OrderQueryCommodityTypeRequest request)
         {
-            return OrderBll.Instance.QueryCommodityType();
+            return OrderBll.Instance.QueryCommodityType(request);
         }
         /// <summary>
         /// 查询订单类型表[看快递走到哪了]
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public OrderQueryOrderTypeResponse QueryOrderType()
+        public OrderQueryOrderTypeResponse QueryOrderType(OrderQueryOrderTypeRequest request)
         {
-            return OrderBll.Instance.QueryOrderType();
+            return OrderBll.Instance.QueryOrderType(request);
         }
         /// <summary>
         /// 添加订单信息

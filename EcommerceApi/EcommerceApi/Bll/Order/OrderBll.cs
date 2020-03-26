@@ -26,7 +26,7 @@ namespace Bll.Order
         /// 查询优惠信息表[9折  7折  5折  免单]
         /// </summary>
         /// <returns></returns>
-        public OrderQueryDiscountsInfoResponse QueryDiscountsInfo()
+        public OrderQueryDiscountsInfoResponse QueryDiscountsInfo(OrderQueryDiscountsInfoRequest request)
         {
             OrderQueryDiscountsInfoResponse response = new OrderQueryDiscountsInfoResponse();
             return response;
@@ -35,7 +35,7 @@ namespace Bll.Order
         /// 查询商品规格表[S  M  L  XL]
         /// </summary>
         /// <returns></returns>
-        public OrderQueryCommodityTypeResponse QueryCommodityType()
+        public OrderQueryCommodityTypeResponse QueryCommodityType(OrderQueryCommodityTypeRequest request)
         {
             OrderQueryCommodityTypeResponse response = new OrderQueryCommodityTypeResponse();
             return response;
@@ -44,7 +44,7 @@ namespace Bll.Order
         /// 查询订单类型表[看快递走到哪了]
         /// </summary>
         /// <returns></returns>
-        public OrderQueryOrderTypeResponse QueryOrderType()
+        public OrderQueryOrderTypeResponse QueryOrderType(OrderQueryOrderTypeRequest request)
         {
             OrderQueryOrderTypeResponse response = new OrderQueryOrderTypeResponse();
             return response;
