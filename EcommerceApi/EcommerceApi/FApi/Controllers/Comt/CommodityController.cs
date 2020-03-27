@@ -66,9 +66,9 @@ namespace FApi.Controllers.Comt
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public CommodityShowResponse CommodityShow()
+        public CommodityShowResponse CommodityShow(CommodityShowRequest request)
         {
-            return CommodityBll.Instance.CommodityShow();
+            return CommodityBll.Instance.CommodityShow(request);
         }
 
         /// <summary>

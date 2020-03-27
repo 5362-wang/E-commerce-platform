@@ -12,13 +12,11 @@ namespace Bll.Comt
 {
     public class CommodityBll : BaseBll<CommodityBll>
     {
-        CommodityDal dal = new CommodityDal();
-
         /// <summary>
         /// 添加颜色
         /// </summary>
         /// <returns></returns>
-        public CommColorAddResponse ColorAdd(CommColorAddRequest commodityColor)
+        public CommColorAddResponse ColorAdd(CommColorAddRequest request)
         {
             CommColorAddResponse response = new CommColorAddResponse();
             return response;
@@ -27,7 +25,7 @@ namespace Bll.Comt
         /// 显示颜色
         /// </summary>
         /// <returns></returns>
-        public CommColorShowResponse ColorShow(CommColorShowRequest commColor)
+        public CommColorShowResponse ColorShow(CommColorShowRequest request)
         {
             CommColorShowResponse response = new CommColorShowResponse();
             return response;
@@ -36,7 +34,7 @@ namespace Bll.Comt
         /// 修改颜色
         /// </summary>
         /// <returns></returns>
-        public CommColorUptResponse ColorUpt(CommColorUptRequest color)
+        public CommColorUptResponse ColorUpt(CommColorUptRequest request)
         {
             CommColorUptResponse response = new CommColorUptResponse();
             return response;
@@ -56,7 +54,7 @@ namespace Bll.Comt
         /// 显示商品                                                                    
         /// </summary>                                                                    
         /// <returns></returns>                                                 
-        public CommodityShowResponse CommodityShow()
+        public CommodityShowResponse CommodityShow(CommodityShowRequest request)
         {
             CommodityShowResponse response = new CommodityShowResponse();
             return response;
@@ -65,7 +63,7 @@ namespace Bll.Comt
         /// 查询商品                                                                    
         /// </summary>                                                                    
         /// <returns></returns>                                                 
-        public CommodityInquireResponse InquireCommodity(CommodityInquireRequest info)
+        public CommodityInquireResponse InquireCommodity(CommodityInquireRequest request)
         {
             CommodityInquireResponse response = new CommodityInquireResponse();
             return response;
@@ -76,7 +74,7 @@ namespace Bll.Comt
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        public CommodityDelResponse CommodityDel(CommodityDelRequest info)
+        public CommodityDelResponse CommodityDel(CommodityDelRequest request)
         {
             CommodityDelResponse response = new CommodityDelResponse();
             return response;
@@ -86,7 +84,7 @@ namespace Bll.Comt
         /// 编辑商品
         /// </summary>
         /// <returns></returns>
-        public CommodityUptResponse CommodityUpt(CommodityUptRequest info)
+        public CommodityUptResponse CommodityUpt(CommodityUptRequest request)
         {
             CommodityUptResponse response = new CommodityUptResponse();
             return response;
@@ -96,7 +94,7 @@ namespace Bll.Comt
         /// 添加类别
         /// </summary>
         /// <returns></returns>
-        public CommTypeAddResponse TypeAdd(CommTypeAddRequest commodityType)
+        public CommTypeAddResponse TypeAdd(CommTypeAddRequest request)
         {
             CommTypeAddResponse response = new CommTypeAddResponse();
             return response;
@@ -106,7 +104,7 @@ namespace Bll.Comt
         /// 显示类别
         /// </summary>
         /// <returns></returns>
-        public CommTypeShowResponse TypeShow(CommTypeShowRequest request)
+        public CommTypeShowResponse TypeShow( CommTypeShowRequest request)
         {
             CommTypeShowResponse response = new CommTypeShowResponse();
             return response;
