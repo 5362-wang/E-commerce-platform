@@ -165,11 +165,11 @@ namespace Bll.Order
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        //public OrderGetOneOrderInfoResponse GetOneOrderInfo(OrderGetOneOrderInfoRequest request)
-        //{
-        //    OrderGetOneOrderInfoResponse response = new OrderGetOneOrderInfoResponse();
-        //    return response;
-        //}
+        public OrderGetOneOrderInfoResponse GetOneOrderInfo(OrderGetOneOrderInfoRequest request)
+        {
+            OrderGetOneOrderInfoResponse response = new OrderGetOneOrderInfoResponse();
+            return response;
+        }
 
         /// <summary>
         /// 编辑方法
