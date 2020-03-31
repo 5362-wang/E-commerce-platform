@@ -11,7 +11,7 @@ namespace Dal.Order
 {
     public class OrderDal
     {
-        public  string ConnStr = "Data Source=.;Initial Catalog=EWTP;Integrated Security=True";
+        public string ConnStr = "Data Source=.;Initial Catalog=EWTP;Integrated Security=True";
 
         /// <summary>
         /// 查询订单表（并且可根据订单类型【快递到哪了】和商品名称进行查询）
@@ -19,17 +19,32 @@ namespace Dal.Order
         /// <param name="name"></param>
         /// <param name="OrderTypeId"></param>
         /// <returns></returns>
-        public List<OrderInfo> QueryOrderInfo(string name,int OrderTypeId=0)
+        public List<OrderInfo> QueryOrderInfo(string name, int OrderTypeId = 0)
         {
             using (IDbConnection connection = new SqlConnection(ConnStr))
             {
-                return connection.Query<OrderInfo>($@"select * from OrderInfo as o
+                string sql;
+
+                List<OrderInfo> list = new List<OrderInfo>();
+                sql = $@"select * from OrderInfo as o
                                                     join DiscountsInfo as d
                                                     on o.YhId = d.DiscountsId
                                                     join OrderType as t
                                                     on t.OrderTypeId = o.OrderTypeId
                                                     join CommodityType as c
-                                                    on c.CtypeId = o.OrderTypeId where o.OrderName like {name} or o.OrderTypeId={OrderTypeId} and o.Staus>0").ToList();
+                                                    on c.CtypeId = o.OrderTypeId where  o.Staus > 0";
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    sql += $" and o.OrderName like '%+{name}+%'  ";
+                }
+                if (OrderTypeId > 0)
+                {
+                    sql += " and o.OrderTypeId=" + OrderTypeId;
+                }
+
+                list = connection.Query<OrderInfo>(sql).ToList();
+                return list;
             }
         }
         /// <summary>
@@ -38,7 +53,7 @@ namespace Dal.Order
         /// <returns></returns>
         public List<DiscountsInfo> QueryDiscountsInfo()
         {
-            using (IDbConnection connection=new SqlConnection(ConnStr))
+            using (IDbConnection connection = new SqlConnection(ConnStr))
             {
                 return connection.Query<DiscountsInfo>("select * from DiscountsInfo").ToList();
             }
@@ -72,7 +87,7 @@ namespace Dal.Order
         /// <returns></returns>
         public int AddOrderInfo(OrderInfo info)
         {
-            using (IDbConnection connection=new SqlConnection(ConnStr))
+            using (IDbConnection connection = new SqlConnection(ConnStr))
             {
                 return connection.Execute(string.Format(@"insert into OrderInfo(BoughtTime,OrderName,CommodityImg,OrderSize,OrderCount,YhId,OrderPrice,OrderTypeId,Consignee,ConsigneeTel,Staus,CreateId,UpdateId,CreateTime,UpdateTime) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')"
                                             , info.BoughtTime, info.OrderName, info.CommodityImg, info.OrderSize, info.OrderCount, info.YhId, info.OrderPrice, info.OrderTypeId, info.Consignee,
@@ -85,11 +100,11 @@ namespace Dal.Order
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DelOrderInfo(int id=0)
+        public int DelOrderInfo(int id = 0)
         {
             using (IDbConnection connection = new SqlConnection(ConnStr))
             {
-                return connection.Execute("update OrderInfo set Staus=0 where OrderId="+id);
+                return connection.Execute("update OrderInfo set Staus=0 where OrderId=" + id);
             }
         }
 
@@ -98,9 +113,9 @@ namespace Dal.Order
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public OrderInfo GetOneOrderInfo(int id=0)
+        public OrderInfo GetOneOrderInfo(int id = 0)
         {
-            using (IDbConnection connection=new SqlConnection(ConnStr))
+            using (IDbConnection connection = new SqlConnection(ConnStr))
             {
                 return connection.Query<OrderInfo>("select * from OrderInfo where OrderId='{0}'", id).Single();
             }
@@ -115,7 +130,7 @@ namespace Dal.Order
         public int UpdateOrderInfo(OrderInfo info)
         {
 
-            using (IDbConnection connection=new SqlConnection(ConnStr))
+            using (IDbConnection connection = new SqlConnection(ConnStr))
             {
                 return connection.Execute(string.Format($@"update OrderInfo set BoughtTime='{info.BoughtTime}',
                                                             OrderName='{info.OrderName}',

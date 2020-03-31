@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Bll.Order
 {
-    public class OrderBll:BaseBll<OrderBll>
+    public class OrderBll : BaseBll<OrderBll>
     {
         OrderDal dal = new OrderDal();
         /// <summary>
@@ -20,6 +20,18 @@ namespace Bll.Order
         public OrderGetResponse QueryOrderInfo(OrderGetRequest request)
         {
             OrderGetResponse response = new OrderGetResponse();
+
+            response.QueryOrderInfo = dal.QueryOrderInfo(request.name, request.OrderTypeId);
+            if (response.QueryOrderInfo.Count > 0)
+            {
+                response.Status = true;
+                response.Message = "查询成功";
+            }
+            else
+            {
+                response.Status = false;
+                response.Message = "查询失败";
+            }
             return response;
         }
         /// <summary>
@@ -29,6 +41,17 @@ namespace Bll.Order
         public OrderQueryDiscountsInfoResponse QueryDiscountsInfo(OrderQueryDiscountsInfoRequest request)
         {
             OrderQueryDiscountsInfoResponse response = new OrderQueryDiscountsInfoResponse();
+            response.QueryDiscountsInfo = dal.QueryDiscountsInfo();
+            if (response.QueryDiscountsInfo.Count > 0)
+            {
+                response.Status = true;
+                response.Message = "查询成功";
+            }
+            else
+            {
+                response.Status = false;
+                response.Message = "查询失败";
+            }
             return response;
         }
         /// <summary>
@@ -38,6 +61,17 @@ namespace Bll.Order
         public OrderQueryCommodityTypeResponse QueryCommodityType(OrderQueryCommodityTypeRequest request)
         {
             OrderQueryCommodityTypeResponse response = new OrderQueryCommodityTypeResponse();
+            response.QueryCommodityType = dal.QueryCommodityType();
+            if (response.QueryCommodityType.Count > 0)
+            {
+                response.Status = true;
+                response.Message = "查询成功";
+            }
+            else
+            {
+                response.Status = false;
+                response.Message = "查询失败";
+            }
             return response;
         }
         /// <summary>
@@ -47,6 +81,17 @@ namespace Bll.Order
         public OrderQueryOrderTypeResponse QueryOrderType(OrderQueryOrderTypeRequest request)
         {
             OrderQueryOrderTypeResponse response = new OrderQueryOrderTypeResponse();
+            response.QueryOrderType = dal.QueryOrderType();
+            if (response.QueryOrderType.Count > 0)
+            {
+                response.Status = true;
+                response.Message = "查询成功";
+            }
+            else
+            {
+                response.Status = false;
+                response.Message = "查询失败";
+            }
             return response;
         }
         /// <summary>
@@ -57,6 +102,35 @@ namespace Bll.Order
         public OrderAddResponse AddOrderInfo(OrderAddRequest request)
         {
             OrderAddResponse response = new OrderAddResponse();
+            OrderInfo orderInfo = new OrderInfo()
+            {
+                BoughtTime = request.BoughtTime,
+                OrderName = request.OrderName,
+                CommodityImg = request.CommodityImg,
+                OrderSize = request.OrderSize,
+                OrderCount = request.OrderCount,
+                YhId = request.YhId,
+                OrderPrice = request.OrderPrice,
+                OrderTypeId = request.OrderTypeId,
+                Consignee = request.Consignee,
+                ConsigneeTel = request.ConsigneeTel,
+                Staus = request.Staus,
+                CreateId = request.CreateId,
+                UpdateId = request.UpdateId,
+                CreateTime = request.CreateTime,
+                UpdateTime = request.UpdateTime
+            };
+            var res = dal.AddOrderInfo(orderInfo);
+            if (res > 0)
+            {
+                response.IsAddSuccess =1;
+                response.Message = "添加成功";
+            }
+            else
+            {
+                response.IsAddSuccess = 0;
+                response.Message = "注册失败";
+            }
             return response;
         }
 
@@ -68,6 +142,21 @@ namespace Bll.Order
         public OrderDeleteResponse DelOrderInfo(OrderDeleteRequest request)
         {
             OrderDeleteResponse response = new OrderDeleteResponse();
+            OrderInfo info = new OrderInfo()
+            {
+                OrderId=request.OrderId,
+            };
+            var res = dal.DelOrderInfo(info.OrderId);
+            if (res > 0)
+            {
+                response.Status = false;
+                response.Message = "删除成功";
+            }
+            else
+            {
+                response.Status = true;
+                response.Message = "删除失败";
+            }
             return response;
         }
 
@@ -92,6 +181,35 @@ namespace Bll.Order
         {
 
             OrderUpdateResponse response = new OrderUpdateResponse();
+            OrderInfo orderInfo = new OrderInfo()
+            {
+                BoughtTime = request.BoughtTime,
+                OrderName = request.OrderName,
+                CommodityImg = request.CommodityImg,
+                OrderSize = request.OrderSize,
+                OrderCount = request.OrderCount,
+                YhId = request.YhId,
+                OrderPrice = request.OrderPrice,
+                OrderTypeId = request.OrderTypeId,
+                Consignee = request.Consignee,
+                ConsigneeTel = request.ConsigneeTel,
+                Staus = request.Staus,
+                CreateId = request.CreateId,
+                UpdateId = request.UpdateId,
+                CreateTime = request.CreateTime,
+                UpdateTime = request.UpdateTime
+            };
+            var res = dal.UpdateOrderInfo(orderInfo);
+            if (res > 0)
+            {
+                response.IsUpdateSuccess = 1;
+                response.Message = "添加成功";
+            }
+            else
+            {
+                response.IsUpdateSuccess = 0;
+                response.Message = "注册失败";
+            }
             return response;
         }
     }
