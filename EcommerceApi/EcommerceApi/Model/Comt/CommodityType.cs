@@ -18,6 +18,6 @@ namespace Model
         /// <summary>
         /// 类型名称
         /// </summary>
-        public int TypeName { get; set; }
+        public string TypeName { get; set; }
     }
 }
