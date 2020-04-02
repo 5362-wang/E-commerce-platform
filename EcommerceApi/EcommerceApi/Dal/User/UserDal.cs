@@ -67,7 +67,7 @@ namespace Dal.User
             UserInfo info = new UserInfo();
             using (IDbConnection connection = new SqlConnection(ConnStr))
             {
-                var sql = $"select * from UserInfo where	UserName='{username}'and PassWord='{pwd}'";
+                var sql = $"select * from UserInfo as u join Department as d on  u.DepartmentId=d.DepartmentId where UserName='{username}'and PassWord='{pwd}'";
                 info = connection.Query<UserInfo>(sql).FirstOrDefault();
             }
             return info;
@@ -87,10 +87,20 @@ namespace Dal.User
             List<UserInfo> list = new List<UserInfo>();
             using (IDbConnection connection = new SqlConnection(ConnStr))
             {
-                var sql = "select * from UserInfo";
+                var sql = "select * from UserInfo as u join Department as d on  u.DepartmentId=d.DepartmentId";
                 list = connection.Query<UserInfo>(sql).ToList();
             }
             return list;
+        }
+        public UserInfo GetInfo(int id)
+        {
+            UserInfo info = new UserInfo();
+            using (IDbConnection connection = new SqlConnection(ConnStr))
+            {
+                var sql = "select * from UserInfo as u join Department as d on  u.DepartmentId=d.DepartmentId where Uid="+id;
+               info = connection.Query<UserInfo>(sql).FirstOrDefault();
+            }
+            return info;
         }
 
     }

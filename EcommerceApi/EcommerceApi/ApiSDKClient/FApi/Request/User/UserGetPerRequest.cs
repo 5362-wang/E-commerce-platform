@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace ApiSDKClient
 {
-    public class UserGetRequest : BaseRequest
+   public   class UserGetPerRequest: BaseRequest
     {
-
         public int Uid { get; set; }
         public override string GetApiName()
         {
-            return "/api/User/GetUserInfo";
+            return "/api/User/GetUser";
         }
     }
 }

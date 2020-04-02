@@ -126,12 +126,36 @@ namespace Bll
             }
             return userFindResponse;
         }
+        /// <summary>
+        /// 用户信息
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public UserGetResponse GetUser(UserGetRequest request)
         {
             UserGetResponse userGetResponse = new UserGetResponse();
             userGetResponse.UserInfoList = dal.GetUsers();
             if (userGetResponse.UserInfoList.Count()>0)
             {         
+                userGetResponse.Message = "获取到用户信息";
+            }
+            else
+            {
+                userGetResponse.Message = "暂无用户信息";
+            }
+            return userGetResponse;
+        }
+        /// <summary>
+        /// 查看用户详情
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public UserGetResponse GetUserInfo(UserGetRequest request)
+        {
+            UserGetResponse userGetResponse = new UserGetResponse();
+            userGetResponse.info = dal.GetInfo(request.Uid);
+            if (userGetResponse.info.Uid > 0)
+            {
                 userGetResponse.Message = "获取到用户信息";
             }
             else

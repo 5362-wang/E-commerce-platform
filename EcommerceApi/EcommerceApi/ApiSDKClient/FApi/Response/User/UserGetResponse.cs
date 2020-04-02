@@ -9,5 +9,7 @@ namespace ApiSDKClient
     public class UserGetResponse : BaseResponse
     {
         public List<UserInfo> UserInfoList { get; set; }
+
+        public UserInfo info { get; set; }
     }
 }

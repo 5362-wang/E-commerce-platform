@@ -47,6 +47,11 @@ namespace Model
         /// 用户部门
         /// </summary>
         public int DepartmentId { get; set; }
+
+        /// <summary>
+        /// 部门名称
+        /// </summary>
+        public string DepartmentName { get; set; }
         /// <summary>
         /// 用户头像
         /// </summary>

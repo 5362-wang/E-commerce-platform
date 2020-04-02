@@ -66,6 +66,12 @@ namespace FApi.Controllers.User
             return new UserDeleteResponse();
         }
 
-        //修改用户的  
+        //查看用户详情
+        [HttpPost]
+        public UserGetResponse GetUser(UserGetRequest request)
+        {
+            return UserBll.Instance.GetUserInfo(request);
+        }
+
     }
 }
