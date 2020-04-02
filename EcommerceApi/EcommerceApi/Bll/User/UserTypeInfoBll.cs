@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Dal.User;
 using Model;
 
-
 namespace Bll.User
 {
 

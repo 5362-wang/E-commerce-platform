@@ -123,7 +123,7 @@ namespace Bll.Order
             var res = dal.AddOrderInfo(orderInfo);
             if (res > 0)
             {
-                response.IsAddSuccess =1;
+                response.IsAddSuccess = 1;
                 response.Message = "添加成功";
             }
             else
@@ -144,7 +144,7 @@ namespace Bll.Order
             OrderDeleteResponse response = new OrderDeleteResponse();
             OrderInfo info = new OrderInfo()
             {
-                OrderId=request.OrderId,
+                OrderId = request.OrderId,
             };
             var res = dal.DelOrderInfo(info.OrderId);
             if (res > 0)
@@ -212,5 +212,31 @@ namespace Bll.Order
             }
             return response;
         }
+
+        /// <summary>
+        /// 点击发货修改成为发货状态
+        /// </summary>
+        /// <returns></returns>
+        public OrderUpdateStausGoGoodsResponse UpdateStausGoGoods(OrderUpdateStausGoGoodsRequest request)
+        {
+            OrderUpdateStausGoGoodsResponse response = new OrderUpdateStausGoGoodsResponse();
+            OrderInfo info = new OrderInfo()
+            {
+                OrderId = request.OrderId,
+            };
+            var res = dal.UpdateStausGoGoods(info.OrderId);
+            if (res > 0)
+            {
+                response.Status = false;
+                response.Message = "发货成功";
+            }
+            else
+            {
+                response.Status = true;
+                response.Message = "发货失败";
+            }
+            return response;
+        }
     }
 }
+

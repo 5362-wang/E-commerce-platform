@@ -96,5 +96,15 @@ namespace FApi.Controllers.Order
 
             return OrderBll.Instance.UpdateOrderInfo(request);
         }
+
+        /// <summary>
+        /// 点击发货修改成为发货状态
+        /// </summary>
+        /// <returns></returns>
+       [HttpPost]
+        public OrderUpdateStausGoGoodsResponse UpdateStausGoGoods(OrderUpdateStausGoGoodsRequest request)
+        {
+            return OrderBll.Instance.UpdateStausGoGoods(request);
+        }
     }
 }

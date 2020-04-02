@@ -26,7 +26,7 @@ namespace Dal.Order
                 string sql;
 
                 List<OrderInfo> list = new List<OrderInfo>();
-                sql = $@"select * from OrderInfo as o
+                sql = @"select * from OrderInfo as o
                                                     join DiscountsInfo as d
                                                     on o.YhId = d.DiscountsId
                                                     join OrderType as t
@@ -36,7 +36,7 @@ namespace Dal.Order
 
                 if (!string.IsNullOrEmpty(name))
                 {
-                    sql += $" and o.OrderName like '%+{name}+%'  ";
+                    sql += $" and o.OrderName like '%{name}%'  ";
                 }
                 if (OrderTypeId > 0)
                 {
@@ -89,9 +89,8 @@ namespace Dal.Order
         {
             using (IDbConnection connection = new SqlConnection(ConnStr))
             {
-                return connection.Execute(string.Format(@"insert into OrderInfo(BoughtTime,OrderName,CommodityImg,OrderSize,OrderCount,YhId,OrderPrice,OrderTypeId,Consignee,ConsigneeTel,Staus,CreateId,UpdateId,CreateTime,UpdateTime) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')"
-                                            , info.BoughtTime, info.OrderName, info.CommodityImg, info.OrderSize, info.OrderCount, info.YhId, info.OrderPrice, info.OrderTypeId, info.Consignee,
-                                            info.ConsigneeTel, info.Staus, info.CreateId, info.UpdateId, info.CreateTime, info.UpdateTime));
+                string sql = string.Format($"insert into OrderInfo(BoughtTime,OrderName,CommodityImg,OrderSize,OrderCount,YhId,OrderPrice,OrderTypeId,Consignee,ConsigneeTel,Staus,CreateId,UpdateId,CreateTime,UpdateTime) values('{info.BoughtTime}', '{info.OrderName}', '{info.CommodityImg}', '{info.OrderSize}', '{info.OrderCount}', '{info.YhId}', '{info.OrderPrice}', '{info.OrderTypeId}', '{info.Consignee}', '{info.ConsigneeTel}',1, '{info.CreateId}', '{info.UpdateId}',GETDATE(), '{info.UpdateTime}')");
+                return connection.Execute(sql);
             }
         }
 
@@ -104,7 +103,7 @@ namespace Dal.Order
         {
             using (IDbConnection connection = new SqlConnection(ConnStr))
             {
-                return connection.Execute("update OrderInfo set Staus=0 where OrderId=" + id);
+                return connection.Execute($"update OrderInfo set Staus={id} where OrderId=1 and Staus>0");
             }
         }
 
@@ -147,6 +146,18 @@ namespace Dal.Order
                                                             UpdateId='{info.UpdateId}',
                                                             CreateTime='{info.CreateTime}',
                                                             UpdateTime='{info.UpdateTime}' where OrderId='{info.OrderId}'"));
+            }
+        }
+        /// <summary>
+        /// 点击发货修改成为发货状态
+        /// </summary>
+        /// <returns></returns>
+        public int UpdateStausGoGoods(int id=0)
+        {
+            using (IDbConnection connection=new SqlConnection(ConnStr))
+            {
+                string sql = $"update OrderInfo set Staus=4 where OrderId={id} and Staus>0";
+                return connection.Execute(sql);
             }
         }
     }
