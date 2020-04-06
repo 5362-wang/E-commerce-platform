@@ -60,9 +60,12 @@
     <Compile Include="FApi\Request\Comt\CommodityDelRequest.cs" />
     <Compile Include="FApi\Request\Comt\CommodityInquireRequest.cs" />
     <Compile Include="FApi\Request\Comt\CommodityShowRequest.cs" />
+    <Compile Include="FApi\Request\Comt\CommodityUpdateReq.cs" />
+    <Compile Include="FApi\Request\Comt\CommodityUptReq.cs" />
     <Compile Include="FApi\Request\Comt\CommodityUptRequest.cs" />
     <Compile Include="FApi\Request\Comt\CommTypeAddRequest.cs" />
     <Compile Include="FApi\Request\Comt\CommTypeShowRequest.cs" />
+    <Compile Include="FApi\Request\Comt\OneCommodityInfoRequest.cs" />
     <Compile Include="FApi\Request\Order\OrderAddRequest.cs" />
     <Compile Include="FApi\Request\Order\OrderDeleteRequest.cs" />
     <Compile Include="FApi\Request\Order\OrderGetOneOrderInfoRequest.cs" />
@@ -84,9 +87,12 @@
     <Compile Include="FApi\Response\Comt\CommodityDelResponse.cs" />
     <Compile Include="FApi\Response\Comt\CommodityInquireResponse.cs" />
     <Compile Include="FApi\Response\Comt\CommodityShowResponse.cs" />
+    <Compile Include="FApi\Response\Comt\CommodityUpdateRes.cs" />
+    <Compile Include="FApi\Response\Comt\CommodityUptRes.cs" />
     <Compile Include="FApi\Response\Comt\CommodityUptResponse.cs" />
     <Compile Include="FApi\Response\Comt\CommTypeAddResponse.cs" />
     <Compile Include="FApi\Response\Comt\CommTypeShowResponse.cs" />
+    <Compile Include="FApi\Response\Comt\OneCommodityInfoResponse.cs" />
     <Compile Include="FApi\Response\Order\OrderAddResponse.cs" />
     <Compile Include="FApi\Response\Order\OrderDeleteResponse.cs" />
     <Compile Include="FApi\Response\Order\OrderGetOneOrderInfoResponse.cs" />

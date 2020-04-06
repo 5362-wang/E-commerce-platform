@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace ApiSDKClient.FApi.Request.Comt
 {
     /// <summary>
-    /// 添加商品
+    /// 修改商品信息
     /// </summary>
-   public class CommodityAddRequest:BaseRequest
+    public class CommodityUpdateReq : BaseRequest
     {
 
         /// <summary>
@@ -48,10 +48,9 @@ namespace ApiSDKClient.FApi.Request.Comt
         /// 商品库存
         /// </summary>
         public int CountNumber { get; set; }
-
         public override string GetApiName()
         {
-            return "/api/Commodity/CommosityAdd";
+            return "/api/Commodity/UpdateCommodityInfo";
         }
     }
 }

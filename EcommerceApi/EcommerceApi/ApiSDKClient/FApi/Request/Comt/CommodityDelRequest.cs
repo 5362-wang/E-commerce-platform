@@ -11,9 +11,10 @@ namespace ApiSDKClient.FApi.Request.Comt
     /// </summary>
    public class CommodityDelRequest:BaseRequest
     {
+        public int id { get; set; }
         public override string GetApiName()
         {
-            return "/api/Comt/CommodityDel";
+            return "/api/Commodity/CommodityDel";
         }
     }
 }

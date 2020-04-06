@@ -17,7 +17,7 @@ namespace ApiSDKClient.FApi.Request.Comt
         public string Color { get; set; }
         public override string GetApiName()
         {
-            return "/api/Comt/ColorAdd";
+            return "/api/Commodity/AddColor";
         }
 
     }

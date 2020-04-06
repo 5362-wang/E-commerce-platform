@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ApiSDKClient.FApi.Response.Comt
 {
+    /// <summary>
+    /// 修改上架状态
+    /// </summary>
   public  class CommodityUptResponse  :BaseResponse
     {
+        public bool CommodityUptSuccess { get; set; }
     }
 }

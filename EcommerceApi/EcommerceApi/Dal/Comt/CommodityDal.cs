@@ -10,9 +10,6 @@ using System.Data;
 
 namespace Dal.Comt
 {
-    /// <summary>
-    /// DAL
-    /// </summary>
     public class CommodityDal
     {
         /// <summary>
@@ -24,14 +21,17 @@ namespace Dal.Comt
         /// 添加颜色
         /// </summary>
         /// <returns></returns>
-        public int ColorAdd(CommodityColor commodityColor)
+        public int ColorAdd(string color)
         {
-            
+
+            int res = 0;
             using (IDbConnection connection = new SqlConnection(Conn))
             {
-                return connection.Execute( "insert into CommodityColor(Color) values(@Color)", commodityColor);
+                var sql = $"insert into CommodityColor(Color) values('{color}')";
+                res = connection.Execute(sql);
             }
-            
+            return res;
+
         }
         /// <summary>
         /// 显示颜色
@@ -47,16 +47,10 @@ namespace Dal.Comt
             }
             return list;
         }
-        /// <summary>
-        /// 修改颜色
-        /// </summary>
-        /// <returns></returns>
-        public int ColorUpt(CommodityColor color)
+        public string ColorUpt()
         {
-            using (IDbConnection connection = new SqlConnection(Conn))
-            {
-                return connection.Execute("update CommodityColor set name=@Name", color);
-            }
+            string res = "";
+            return res;
         }
 
 
@@ -64,26 +58,104 @@ namespace Dal.Comt
         /// 添加商品
         /// </summary>
         /// <returns></returns>
-        public int CommodityAdd(CommodityInfo commodityInfo)
+        public int CommodityAdd(CommodityInfo Info)
         {
-           
+            int res = 0;
             using (IDbConnection connection = new SqlConnection(Conn))
             {
-                return connection.Execute("insert into CommodityInfo(CommodityId,SystematicId,CommodityImg,CommodityPrice,CommodityDetalis,RegisterDate,PutNumber,CountNumber) values (@CommodityId,@SystematicId,@CommodityImg,@CommodityPrice,@CommodityDetalis,@RegisterDate,@PutNumber,@CountNumber)", commodityInfo);
-               
+                var sql = $"insert into CommodityInfo(CommodName,SystematicId,CommodityImg,CommodityPrice,CommodityDetalis,RegisterDate,PutNumber,CountNumber) values ('{Info.CommodName}','{Info.SystematicId}','{Info.CommodityImg}','{Info.CommodityPrice}','{Info.CommodityDetalis}',1,'{Info.PutNumber}','{Info.CountNumber}')";
+                res = connection.Execute(sql);
+
             }
-            
+            return res;
+
         }
+        /// <summary>
+        /// 修改状态
+        /// </summary>
+        /// <returns></returns>
+        public int CommodityUpt(int id = 0)
+        {
+            int res = 0;
+            using (IDbConnection connection = new SqlConnection(Conn))
+            {
+                var sql = $"Update  CommodityInfo    set   RegisterDate=0    where  CommodityId={id}";
+                res = connection.Execute(sql);
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 根据用户id获取单条信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public CommodityInfo GetOneCommodityInfo(int id = 0)
+        {
+            using (IDbConnection connection = new SqlConnection(Conn))
+            {
+                return connection.Query<CommodityInfo>("select * from CommodityInfo where CommodityId=" + id).Single();
+            }
+        }
+
+        /// <summary>
+        /// 编辑方法
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int UpdateCommodityInfo(CommodityInfo info)
+        {
+
+            using (IDbConnection connection = new SqlConnection(Conn))
+            {
+                return connection.Execute(string.Format($@"update CommodityInfo set CommodName='{info.CommodName}',
+                                                            SystematicId={info.SystematicId},
+                                                            CommodityImg='{info.CommodityImg}',
+                                                            CommodityPrice='{info.CommodityPrice}',
+                                                            CommodityDetalis='{info.CommodityDetalis}',
+                                                            RegisterDate='{info.RegisterDate}',
+                                                            PutNumber='{info.PutNumber}',
+                                                            CountNumber='{info.CountNumber}' where CommodityId={info.CommodityId}"));
+            }
+        }
+
+        /// <summary>
+        /// 获取单条数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public CommodityInfo OneCommosity(int id = 0)
+        {
+            CommodityInfo info = new CommodityInfo();
+            using (IDbConnection connection = new SqlConnection(Conn))
+            {
+                var sql = "select * from CommodityInfo where CommodityId='{id}'";
+                info = connection.Query<CommodityInfo>(sql).FirstOrDefault();
+            }
+            return info;
+        }
+
+
         /// <summary>                                                              
         /// 显示商品                                                                    
         /// </summary>                                                                    
         /// <returns></returns>                                                 
-        public List<CommodityInfo> CommodityShow()
+        public List<CommodityInfo> CommodityShow(string name, int CtypeId = 0)
         {
             var list = new List<CommodityInfo>();
+            string sql;
             using (IDbConnection connection = new SqlConnection(Conn))
             {
-                var sql = "select * from CommodityInfo ";
+                sql = @"select * from CommodityInfo as c join CommodityType as t on t.CtypeId=c.SystematicId where c.SystematicId>0";
+                if (!string.IsNullOrEmpty(name))
+                {
+                    sql += $" and c.CommodName like '%{name}%'  ";
+                }
+                if (CtypeId > 0)
+                {
+                    sql += " and c.SystematicId=" + CtypeId;
+                }
                 list = connection.Query<CommodityInfo>(sql).ToList();
             }
             return list;
@@ -92,11 +164,11 @@ namespace Dal.Comt
         /// 查询商品                                                                    
         /// </summary>                                                                    
         /// <returns></returns>                                                 
-        public CommodityInfo InquireCommodity(CommodityInfo info)
+        public CommodityInfo InquireCommodity(string name)
         {
             using (IDbConnection connection = new SqlConnection(Conn))
             {
-                  return connection.Query< CommodityInfo > ("select * from CommodityInfo where CommodName=@CommodName",info).SingleOrDefault();
+                return connection.Query<CommodityInfo>("select * from CommodityInfo where CommodName='{name}'").FirstOrDefault();
             }
         }
 
@@ -105,39 +177,33 @@ namespace Dal.Comt
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        public int CommodityDel(CommodityInfo info)
+        public int CommodityDel(int id)
         {
-          
+
             using (IDbConnection connection = new SqlConnection(Conn))
             {
-                return connection.Execute("update CommodityInfo set RegisterDate=@RegisterDate ",info);
-                
+                return connection.Execute("update CommodityInfo set RegisterDate='{0}' ", id);
+
             }
-          
+
         }
 
-        /// <summary>
-        /// 编辑商品
-        /// </summary>
-        /// <returns></returns>
-        public int CommodityUpt(CommodityInfo info)
-        {
-            using (IDbConnection connection = new SqlConnection(Conn))
-            {
-                return connection.Execute( "update CommodityInfo set CommodityId=@CommodityId ",info);
-            }
-        }
+
+
 
         /// <summary>
         /// 添加类别
         /// </summary>
         /// <returns></returns>
-        public int TypeAdd(CommodityType commodityType)
+        public int TypeAdd(string type)
         {
+            int res = 0;
             using (IDbConnection connection = new SqlConnection(Conn))
             {
-                return connection.Execute("insert into CommodityType(TypeName) values (@TypeNamw)", commodityType);
+                var sql = $"insert into CommodityType(TypeName) values('{type}')";
+                res = connection.Execute(sql);
             }
+            return res;
         }
 
         /// <summary>
@@ -146,13 +212,10 @@ namespace Dal.Comt
         /// <returns></returns>
         public List<CommodityType> TypeShow()
         {
-            var list = new List<CommodityType>();
             using (IDbConnection connection = new SqlConnection(Conn))
             {
-                var sql = "select * from CommodityType";
-                list = connection.Query<CommodityType>(sql).ToList();
+                return connection.Query<CommodityType>("select * from CommodityType").ToList();
             }
-            return list;
         }
 
     }

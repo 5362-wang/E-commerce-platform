@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 namespace ApiSDKClient.FApi.Request.Comt
 {
     /// <summary>
-    /// 编辑商品
+    /// 修改上架状态
     /// </summary>
    public class CommodityUptRequest :BaseRequest
     {
+        public int Id { get; set; }
         public override string GetApiName()
         {
-            return "/api/Comt/CommodityUpt";
+            return "/api/Commodity/CommodityUpt";
         }
     }
 }

@@ -13,7 +13,7 @@ namespace ApiSDKClient.FApi.Request.Comt
     {
         public override string GetApiName()
         {
-            return "/api/Comt/ColorUpt";
+            return "/api/Commodity/UptColor";
         }
     }
 }

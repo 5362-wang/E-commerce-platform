@@ -1,6 +1,7 @@
 ﻿using ApiSDKClient.FApi.Request.Comt;
 using ApiSDKClient.FApi.Response.Comt;
 using Bll.Comt;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace FApi.Controllers.Comt
     public class CommodityController : ApiController
     {
         /// <summary>
-        /// 添加颜色接口
+        /// 添加颜色
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -81,7 +82,7 @@ namespace FApi.Controllers.Comt
         {
             return CommodityBll.Instance.CommodityDel(request);
         }
-                       
+
         /// <summary>
         /// 查询商品
         /// </summary>
@@ -94,7 +95,7 @@ namespace FApi.Controllers.Comt
         }
 
         /// <summary>
-        /// 编辑商品
+        /// 修改上架状态
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -105,6 +106,29 @@ namespace FApi.Controllers.Comt
         }
 
         /// <summary>
+        /// 获取用户单条信息
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public CommodityUptRes GetCommodityInfo(CommodityUptReq request)
+        {
+            return CommodityBll.Instance.GetOneCommodityInfo(request);
+        }
+
+        /// <summary>
+        /// 编辑商品信息
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public CommodityUpdateRes UpdateCommodityInfo(CommodityUpdateReq request)
+        {
+            return CommodityBll.Instance.UpdateCommodityInfo(request);
+        }
+
+
+        /// <summary>
         /// 添加类别
         /// </summary>
         /// <param name="request"></param>
@@ -112,6 +136,7 @@ namespace FApi.Controllers.Comt
         [HttpPost]
         public CommTypeAddResponse CommTypeAdd(CommTypeAddRequest request)
         {
+
             return CommodityBll.Instance.TypeAdd(request);
         }
 

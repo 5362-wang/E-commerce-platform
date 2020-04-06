@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ApiSDKClient.FApi.Response.Comt
 {
-   public class CommodityDelResponse :BaseResponse
+    /// <summary>
+    /// 修改商品信息
+    /// </summary>
+   public class CommodityUpdateRes : BaseResponse
     {
-        public bool CommodityDelSuccess { get; set; }
+        public bool CommodityUpdate { get; set; }
     }
 }

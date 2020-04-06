@@ -14,10 +14,10 @@ namespace ApiSDKClient.FApi.Request.Comt
         /// <summary>
         /// 类型名称
         /// </summary>
-        public int TypeName { get; set; }
+        public string TypeName { get; set; }
         public override string GetApiName()
         {
-            return "/api/Comt/TypeAdd";
+            return "/api/Commodity/CommTypeAdd";
         }
     }
 }

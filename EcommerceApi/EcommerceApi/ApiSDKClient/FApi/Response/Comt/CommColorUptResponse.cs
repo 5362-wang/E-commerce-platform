@@ -8,5 +8,6 @@ namespace ApiSDKClient.FApi.Response.Comt
 {
    public class CommColorUptResponse :BaseResponse
     {
+        public bool CommUpt { get; set; }
     }
 }

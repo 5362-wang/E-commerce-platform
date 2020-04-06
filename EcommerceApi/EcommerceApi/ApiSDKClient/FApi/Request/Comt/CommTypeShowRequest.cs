@@ -13,7 +13,7 @@ namespace ApiSDKClient.FApi.Request.Comt
     {
         public override string GetApiName()
         {
-            return "/api/Comt/TypeShow";
+            return "/api/Commodity/CommTypeShow";
         }
     }
 }

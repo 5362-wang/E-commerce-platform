@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace ApiSDKClient.FApi.Response.Comt
 {
-    public class CommodityInquireResponse  :BaseResponse
+    /// <summary>
+    /// 获取单条信息
+    /// </summary>
+   public class CommodityUptRes : BaseResponse
     {
-        public bool CommodityInquireSuccess { get; set; }
+        public CommodityInfo CommUpt { get; set; }
     }
 }

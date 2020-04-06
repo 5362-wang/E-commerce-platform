@@ -11,9 +11,10 @@ namespace ApiSDKClient.FApi.Request.Comt
     /// </summary>
    public class CommodityInquireRequest :BaseRequest
     {
+        public bool CommodName { get; set; }
         public override string GetApiName()
         {
-            return "/api/Comt/InquireCommodity";
+            return "/api/Commodity/CommodityInquire";
         }
     }
 }
