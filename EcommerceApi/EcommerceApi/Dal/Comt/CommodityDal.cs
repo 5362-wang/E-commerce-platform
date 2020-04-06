@@ -10,6 +10,9 @@ using System.Data;
 
 namespace Dal.Comt
 {
+    /// <summary>
+    /// DAL
+    /// </summary>
     public class CommodityDal
     {
         /// <summary>
